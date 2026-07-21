@@ -78,7 +78,10 @@ index.html#t=Launch%20Day&ts=1799000000000&u=dhms&z=up
   host that supports it (Cloudflare Pages, Netlify). The meta tags remain the
   single source of truth for the `file://` case; the header is defense-in-depth
   for the hosted case and closes clickjacking (iframe embedding), which meta
-  CSP cannot.
+  CSP cannot. The `_headers` file also sends `Strict-Transport-Security`
+  (`max-age=31536000; includeSubDomains`), which — like `frame-ancestors` —
+  only works as a real HTTP header (browsers ignore HSTS in a `<meta>` tag per
+  spec) and so applies to the hosted case only.
 - **`Referrer-Policy: no-referrer`.** The URL fragment is never sent in a
   `Referer` header regardless (that's stripped by browsers per spec), but
   this meta tag additionally suppresses the scheme+host+path from being
