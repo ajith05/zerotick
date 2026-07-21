@@ -45,6 +45,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--
+  Search engines and chat apps that unfurl links only ever fetch this file;
+  the hash fragment is not sent to them. So every shared countdown produces
+  this same generic description, never the event's title or date.
+-->
+<meta name="description" content="Make a shareable countdown to any moment, encoded entirely in the link. No account, no database, and no server ever learns what you're counting down to.">
+<!--
   Defense-in-depth, not behavior-driving: nothing on this page currently
   makes network requests or outbound navigations, so these two tags are
   belt-and-suspenders safeguards that stay true even if future edits
