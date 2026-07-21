@@ -226,7 +226,9 @@ Yes — the layout scales fluidly and the number boxes wrap on narrow screens.
 **Can I self-host it?**
 Yes. It's one self-contained HTML file, MIT-licensed, with no build step. Drop
 it on any static host. Include the [`_headers`](_headers) file on Cloudflare
-Pages or Netlify to also get the CSP, HSTS, and anti-clickjacking headers.
+Pages or Netlify to also get the CSP, HSTS, and anti-clickjacking headers, and
+[`404.html`](404.html) if you want unknown paths to return a real 404 instead of
+the homepage. Both are optional — the app itself is still just `index.html`.
 
 ## License
 

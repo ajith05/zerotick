@@ -1,0 +1,146 @@
+<!--
+  ============================================================================
+  404.html — most static hosts serve this file, with a real HTTP 404 status,
+  for any path that doesn't map to a file. Optional: the app itself is still
+  just index.html, and this page only changes what unknown paths return.
+
+  The handful of CSS variables below are copied from index.html rather than
+  shared. That duplication is deliberate — keeping this page standalone means
+  it has no script, makes no network requests, and cannot drift into depending
+  on app logic. If you restyle the app, this page will not follow
+  automatically; update it here too.
+
+  Nothing here reads the URL. Countdown state lives entirely in the hash
+  fragment, which browsers never transmit, so a 404 cannot reveal anything
+  about a countdown even when a link is mistyped.
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Same defence-in-depth posture as index.html, minus script-src: this page
+     has no script, and default-src 'none' already blocks any that appeared. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none';">
+<meta name="referrer" content="no-referrer">
+<!-- Inline SVG data-URI favicon, as in index.html, so the browser does not
+     fall back to requesting /favicon.ico from the host. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2275%22 font-size=%2290%22 text-anchor=%22middle%22>%E2%8F%B3</text></svg>">
+<title>Page not found</title>
+<style>
+  /* Theme follows the OS preference only. The app's light/dark toggle is
+     script-driven, and this page has no script, so there is no data-theme
+     attribute to honour here. */
+  :root {
+    color-scheme: light dark;
+    --bg: #f5f5f7;
+    --fg: #111114;
+    --muted: #5a5a63;
+    --box-bg: #ffffff;
+    --box-border: #dcdce2;
+    --accent: #2b6bff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101014;
+      --fg: #f2f2f5;
+      --muted: #a3a3ad;
+      --box-bg: #1b1b21;
+      --box-border: #2c2c34;
+      --accent: #6d9bff;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: clamp(16px, 4vw, 48px);
+  }
+
+  .status {
+    /* Muted on purpose: the large numeral sets the scene, but the
+       "Page not found" heading should stay the loudest thing on the page.
+       Declared here so the generic p rule below cannot quietly change it. */
+    color: var(--muted);
+    font-size: clamp(2.5rem, 12vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1 {
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 600;
+    margin: clamp(10px, 3vh, 20px) 0 0;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 46ch;
+    margin: 12px 0 0;
+    line-height: 1.5;
+  }
+
+  /* The same inline-code chip the app's FAQ uses, filled with --box-bg
+     instead of --bg. The FAQ sits on a --box-bg card, so there --bg is the
+     contrasting colour; this page's own surface is --bg, so the fill has to
+     flip to stay visible. */
+  code {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.85em;
+    background: var(--box-bg);
+    border: 1px solid var(--box-border);
+    border-radius: 4px;
+    padding: 1px 4px;
+  }
+
+  a.home {
+    background: var(--box-bg);
+    border: 1px solid var(--box-border);
+    color: var(--fg);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: clamp(18px, 4vh, 32px);
+  }
+  a.home:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <p class="status">404</p>
+  <h1>Page not found</h1>
+  <p>
+    There&rsquo;s nothing at this address. If you followed a countdown link, check
+    that the whole thing was copied &mdash; everything after the <code>#</code>
+    is part of it.
+  </p>
+  <!-- Absolute "/" assumes the app is served from the domain root. If you
+       self-host it under a subpath, change this to match (e.g. "/countdown/").
+       A relative href will not work: the browser's address bar still holds the
+       path that 404'd, so relative links resolve against that, not this file's
+       real location. -->
+  <a class="home" href="/">Go to the countdown builder</a>
+</body>
+</html>
