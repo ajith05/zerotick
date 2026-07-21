@@ -51,6 +51,26 @@
 -->
 <meta name="description" content="Make a shareable countdown to any moment, encoded entirely in the link. No account, no database, and no server ever learns what you're counting down to.">
 <!--
+  Link previews for chat apps. Deliberately text-only:
+
+  - No og:image. An image would have to be a real file at an absolute URL,
+    making it the first asset this page asks a third party to fetch and
+    breaking the rule that this file requests nothing off-origin. A data:
+    URI will not do; unfurlers reject it.
+  - No og:url. It would have to hardcode one deployment's domain, which every
+    fork would then advertise until they noticed. Relative values do not work,
+    and a single-page site has no canonical-URL ambiguity to resolve anyway.
+
+  og:title and og:description restate <title> and the description above rather
+  than referencing them; there is no way to share one string between meta tags.
+  Change one and change its twin, or a link preview will disagree with the
+  browser tab.
+-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Countdown">
+<meta property="og:description" content="Make a shareable countdown to any moment, encoded entirely in the link. No account, no database, and no server ever learns what you're counting down to.">
+<meta name="twitter:card" content="summary">
+<!--
   Defense-in-depth, not behavior-driving: nothing on this page currently
   makes network requests or outbound navigations, so these two tags are
   belt-and-suspenders safeguards that stay true even if future edits
