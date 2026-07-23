@@ -11,7 +11,7 @@ timer **builder** and a **viewer**, with zero server, zero build step, and
 zero external network requests. Open it directly via `file://` or host it as a
 static file anywhere.
 
-**Live demo:** [zerotick.pages.dev](https://zerotick.pages.dev/)
+**Live demo:** [zerotick.dev](https://zerotick.dev/)
 
 ## How it works
 
