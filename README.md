@@ -137,7 +137,7 @@ A countdown timer where the whole timer lives in the link. You fill out a
 short form, get a URL, and share it. Anyone who opens it sees a live
 countdown. No account, no sign-up, no database.
 
-**Why is it called zerotick?**
+**Why is it called ZeroTick?**
 The *tick* is the countdown itself — the seconds ticking down to your moment.
 The *zero* is everything the page deliberately does without:
 - **Zero servers.** Nothing runs on a backend; the whole timer *is* the link.
@@ -153,7 +153,7 @@ The *zero* is everything the page deliberately does without:
 
 And the countdown, of course, runs down to zero.
 
-**How do I make one?**
+**How do I make a countdown timer?**
 Open the page with no `#` in the URL and you get the builder: an event title,
 a target date and time, which units to show (days/hours/minutes/seconds), and
 what happens at zero. Hit **Generate link**, then **Copy link**.
